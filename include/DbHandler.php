@@ -54,7 +54,7 @@ class DbHandler {
     }
 	
     public function getOrder() {
-        $stmt = $this->conn->prepare("SELECT * FROM orderan INNER JOIN produk ON orderan.id_produk=produk.id_produk INNER JOIN user ON orderan.username=user.username");
+        $stmt = $this->conn->prepare("SELECT * FROM orderan INNER JOIN produk ON orderan.id_produk=produk.id_produk INNER JOIN user ON orderan.username=user.username ORDER BY waktu_order DESC");
         $stmt->execute();
         $tasks = $stmt->get_result();
         $stmt->close();
@@ -62,7 +62,7 @@ class DbHandler {
     }
 
     public function getUserOrder($username) {
-        $stmt = $this->conn->prepare("SELECT * FROM orderan WHERE username='$username' ORDER BY id_order ASC");
+        $stmt = $this->conn->prepare("SELECT * FROM orderan WHERE username='$username' ORDER BY waktu_order DESC");
         $stmt->execute();
         $tasks = $stmt->get_result();
         $stmt->close();
@@ -70,7 +70,7 @@ class DbHandler {
     }
 
     public function getUserOrderDiterima($username) {
-        $stmt = $this->conn->prepare("SELECT * FROM orderan WHERE username='$username' AND status_order='diterima' ORDER BY id_order ASC");
+        $stmt = $this->conn->prepare("SELECT * FROM orderan WHERE username='$username' AND status_order='diterima' ORDER BY waktu_order DESC");
         $stmt->execute();
         $tasks = $stmt->get_result();
         $stmt->close();
@@ -78,7 +78,7 @@ class DbHandler {
     }
 	
 	public function getUserOrderMenunggu($username) {
-        $stmt = $this->conn->prepare("SELECT * FROM orderan WHERE username='$username' AND status_order='menunggu' ORDER BY id_order ASC");
+        $stmt = $this->conn->prepare("SELECT * FROM orderan WHERE username='$username' AND status_order='menunggu' ORDER BY waktu_order DESC");
         $stmt->execute();
         $tasks = $stmt->get_result();
         $stmt->close();
