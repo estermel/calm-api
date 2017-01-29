@@ -20,9 +20,15 @@ class DbHandler {
 		return $tasks;
     }
 
+<<<<<<< HEAD
     public function order($id_order, $id_user, $id_produk, $asrama, $no_kamar, $jus, $waktu_order, $status_order) {
         $stmt = $this->conn->prepare("INSERT INTO orderan (id_order, id_user, id_produk, asrama, no_kamar, jus, waktu_order, status_order) VALUES (?,?,?,?,?,?,CURRENT_TIMESTAMP,?)");
         $stmt->bind_param("iiisssss", $id_order, $id_user, $id_produk, $asrama, $no_kamar, $jus, $waktu_order, $status_order);
+=======
+    public function order($id_order, $username, $id_produk, $asrama, $no_kamar, $jus, $tanggal_booking, $jam_booking, $waktu_order, $status_order) {
+        $stmt = $this->conn->prepare("INSERT INTO orderan (id_order, username, id_produk, asrama, no_kamar, jus, tanggal_booking, jam_booking, waktu_order, status_order) VALUES (?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP,?)");
+        $stmt->bind_param("isisssssss", $id_order, $username, $id_produk, $asrama, $no_kamar, $jus ,$tanggal_booking, $jam_booking, $waktu_order, $status_order);
+>>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
         $stmt->execute();
         $tasks = $stmt->get_result();
         $stmt->close();
@@ -76,8 +82,13 @@ class DbHandler {
         $stmt->close();
         return $tasks;
     }
+<<<<<<< HEAD
 	
 	public function getUserOrderMenunggu($username) {
+=======
+
+    public function getUserOrderMenunggu($username) {
+>>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
         $stmt = $this->conn->prepare("SELECT * FROM orderan WHERE username='$username' AND status_order='menunggu' ORDER BY id_order ASC");
         $stmt->execute();
         $tasks = $stmt->get_result();
