@@ -20,9 +20,9 @@ class DbHandler {
 		return $tasks;
     }
 
-    public function order($id_order, $id_user, $id_produk, $asrama, $no_kamar, $jus, $waktu_order, $status_order) {
-        $stmt = $this->conn->prepare("INSERT INTO orderan (id_order, id_user, id_produk, asrama, no_kamar, jus, waktu_order, status_order) VALUES (?,?,?,?,?,?,CURRENT_TIMESTAMP,?)");
-        $stmt->bind_param("iiisssss", $id_order, $id_user, $id_produk, $asrama, $no_kamar, $jus, $waktu_order, $status_order);
+    public function order($id_order, $username, $id_produk, $asrama, $no_kamar, $jus, $tanggal_booking, $jam_booking, $waktu_order, $status_order) {
+        $stmt = $this->conn->prepare("INSERT INTO orderan (id_order, username, id_produk, asrama, no_kamar, jus, tanggal_booking, jam_booking, waktu_order, status_order) VALUES (?,?,?,?,?,?,?,?,CURRENT_TIMESTAMP,?)");
+        $stmt->bind_param("isisssssss", $id_order, $username, $id_produk, $asrama, $no_kamar, $jus ,$tanggal_booking, $jam_booking, $waktu_order, $status_order);
         $stmt->execute();
         $tasks = $stmt->get_result();
         $stmt->close();

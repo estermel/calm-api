@@ -362,33 +362,40 @@ $app->post('/register', function() {
 $app->post('/order', function() {
     $app = \Slim\Slim::getInstance();
     $id_order      = $app->request()->post('id_order');
-    $id_user       = $app->request()->post('id_user');
+    $username       = $app->request()->post('username');
     $id_produk     = $app->request()->post('id_produk');
     $asrama        = $app->request()->post('asrama');
     $no_kamar      = $app->request()->post('no_kamar');
     $jus           = $app->request()->post('jus');
+	$tanggal_booking = $app->request()->post('tanggal_booking');
+	$jam_booking = $app->request()->post('jam_booking');
     $waktu_order   = $app->request()->post('waktu_order');
     $status_order  = $app->request()->post('status_order');
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     try {
         $db = getDB();
-        $sth = $db->prepare("INSERT INTO orderan (id_order, id_user, id_produk, asrama, no_kamar, jus, waktu_order, status_order) 
-            VALUES (:id_order, :id_user, :id_produk, :asrama, :no_kamar, :jus, CURRENT_TIMESTAMP, 'menunggu')");
+        $sth = $db->prepare("INSERT INTO orderan (id_order, username, id_produk, asrama, no_kamar, jus, tanggal_booking, jam_booking, waktu_order, status_order) 
+            VALUES (:id_order, :username, :id_produk, :asrama, :no_kamar, :jus, :tanggal_booking, :jam_booking, CURRENT_TIMESTAMP, 'menunggu')");
             $sth->bindParam(':id_order',     $id_order, PDO::PARAM_INT);
-            $sth->bindParam(':id_user',      $id_user, PDO::PARAM_INT);
+            $sth->bindParam(':username',     $username, PDO::PARAM_INT);
             $sth->bindParam(':id_produk',    $id_produk, PDO::PARAM_INT);
             $sth->bindParam(':asrama',       $asrama, PDO::PARAM_INT);
             $sth->bindParam(':no_kamar',     $no_kamar, PDO::PARAM_INT);
             $sth->bindParam(':jus',          $jus, PDO::PARAM_INT);
+			$sth->bindParam(':tanggal_booking', $tanggal_booking, PDO::PARAM_INT);
+			$sth->bindParam(':jam_booking', $jam_booking, PDO::PARAM_INT);
             $sth->execute();
+
             $output = array(
                     'status' => "1",
-                    'operation' => "success"
+                    'operation' => "order success"
                 );
-                echo json_encode($output);
-                $db = null;
-                return;
+
+            echo json_encode($output);
+            $db = null;
+            return;
+            
     } catch (Exception $ex) {
         echo $ex;
     }
