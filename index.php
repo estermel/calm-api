@@ -9,30 +9,18 @@ require 'libs/Slim/Slim.php';
 $app = new \Slim\Slim();
 
 function getDB() {
-<<<<<<< HEAD
     $dbhost = "localhost"; //DB server host
     $dbuser = "root"; //DB username
     $dbpass = ""; //DB password
     $dbname = "calm1"; //DB name
 
-=======
-    $dbhost = "localhost";
-    $dbuser = "root";
-    $dbpass = "";
-    $dbname = "calm1";
-
-    
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
     $mysql_conn_string = "mysql:host=$dbhost;dbname=$dbname";
     $dbConnection = new PDO($mysql_conn_string, $dbuser, $dbpass);
     $dbConnection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     return $dbConnection;
 }
 
-<<<<<<< HEAD
 //getting all account
-=======
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
 $app->get('/akun', function() {
     $app = \Slim\Slim::getInstance();
 	$app->response->setStatus(200);
@@ -46,20 +34,12 @@ $app->get('/akun', function() {
         $tmp = array();
 		$tmp["id"] = utf8_encode($strData["id"]);
         $tmp["username"] = utf8_encode($strData["username"]);
-<<<<<<< HEAD
-=======
-        $tmp["password"] = utf8_encode($strData["password"]);     
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
         array_push($response["akun"], $tmp);
     }
     echoRespnse(200, $response);
 });
 
-<<<<<<< HEAD
-
 //getting all product
-=======
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
 $app->get('/produk', function() {
     $app = \Slim\Slim::getInstance();
     $app->response->setStatus(200);
@@ -71,28 +51,17 @@ $app->get('/produk', function() {
     $response["produk"] = array();
     while ($strData = $result->fetch_assoc()) {
         $tmp = array();
-<<<<<<< HEAD
         $tmp["id_produk"] = utf8_encode($strData["id_produk"]);
         $tmp["nama_produk"] = utf8_encode($strData["nama_produk"]);
         $tmp["harga"] = utf8_encode($strData["harga"]);
         $tmp["gambar"] 		= utf8_encode($strData["gambar"]);
         $tmp["deskripsi"] 	= utf8_encode($strData["deskripsi"]);       
-=======
-        $tmp["id_produk"] 	= utf8_encode($strData["id_produk"]);
-        $tmp["nama_produk"] = utf8_encode($strData["nama_produk"]);
-        $tmp["harga"] 		= utf8_encode($strData["harga"]);
-        $tmp["gambar"] 		= utf8_encode($strData["gambar"]);
-        $tmp["deskripsi"] 	= utf8_encode($strData["deskripsi"]);     
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
         array_push($response["produk"], $tmp);
     }
     echoRespnse(200, $response);
 });
 
-<<<<<<< HEAD
 //getting all order info
-=======
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
 $app->get('/order', function() {
     $app = \Slim\Slim::getInstance();
     $app->response->setStatus(200);
@@ -107,12 +76,6 @@ $app->get('/order', function() {
         $tmp["id_order"]     = utf8_encode($strData["id_order"]);
         $tmp["username"]     = utf8_encode($strData["username"]);
         $tmp["id_produk"]    = utf8_encode($strData["id_produk"]);
-<<<<<<< HEAD
-        $tmp["nama_produk"]  = utf8_encode($strData["nama_produk"]);  
-        $tmp["asrama"]       = utf8_encode($strData["asrama"]);     
-        $tmp["no_kamar"]     = utf8_encode($strData["no_kamar"]);     
-        $tmp["jus"]          = utf8_encode($strData["jus"]);     
-=======
         $tmp["nama_produk"]  = utf8_encode($strData["nama_produk"]);
         $tmp["username"]     = utf8_encode($strData["username"]);
         $tmp["asrama"]       = utf8_encode($strData["asrama"]);     
@@ -120,7 +83,6 @@ $app->get('/order', function() {
         $tmp["jus"]          = utf8_encode($strData["jus"]);
 		$tmp["tanggal_booking"]= utf8_encode($strData["tanggal_booking"]);
 		$tmp["jam_booking"]  = utf8_encode($strData["jam_booking"]);
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
         $tmp["waktu_order"]  = utf8_encode($strData["waktu_order"]);
         $tmp["status_order"] = utf8_encode($strData["status_order"]);
         $tmp["confirm_by"]   	  = utf8_encode($strData["confirm_by"]);
@@ -131,36 +93,21 @@ $app->get('/order', function() {
     echoRespnse(200, $response);
 });
 
-<<<<<<< HEAD
 //getting all user transaction by username
 $app->post('/userOrder', function() {
     $app = \Slim\Slim::getInstance();
     $id_user = $app->request->post('id_user');
-=======
-//get all user transaction by username
-$app->post('/userOrder', function() {
-    $app = \Slim\Slim::getInstance();
-    $username = $app->request->post('username');
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     $response = array();
     $db = new DbHandler();
-<<<<<<< HEAD
-    $result = $db->getUserOrder($id_user);
-=======
     $result = $db->getUserOrder($username);
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
     $response["error"] = false;
     $response["userOrder"] = array();
     while ($strData = $result->fetch_assoc()) {
         $tmp = array();
         $tmp["id_order"]     	  = utf8_encode($strData["id_order"]);
-<<<<<<< HEAD
-        $tmp["username"]           = utf8_encode($strData["username"]);
-=======
         $tmp["username"]          = utf8_encode($strData["username"]);
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
         $tmp["id_produk"]    	  = utf8_encode($strData["id_produk"]);   
         $tmp["asrama"]       	  = utf8_encode($strData["asrama"]);     
         $tmp["no_kamar"]     	  = utf8_encode($strData["no_kamar"]);    
@@ -174,11 +121,7 @@ $app->post('/userOrder', function() {
     echoRespnse(200, $response);
 });
 
-<<<<<<< HEAD
 //getting all user transaction by username with status = "diterima"
-=======
-//get all user transaction by username diterima
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
 $app->post('/userOrderDiterima', function() {
     $app = \Slim\Slim::getInstance();
     $username = $app->request->post('username');
@@ -206,11 +149,7 @@ $app->post('/userOrderDiterima', function() {
     echoRespnse(200, $response);
 });
 
-<<<<<<< HEAD
 //getting all user transaction by username with status = "menunggu"
-=======
-//get all user transaction by username menunggu
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
 $app->post('/userOrderMenunggu', function() {
     $app = \Slim\Slim::getInstance();
     $username = $app->request->post('username');
@@ -238,9 +177,7 @@ $app->post('/userOrderMenunggu', function() {
     echoRespnse(200, $response);
 });
 
-<<<<<<< HEAD
 //logging in
-=======
 $app->post('/register', function() {
 	$app = \Slim\Slim::getInstance();
     $nama = $app->request()->post('nama');
@@ -282,67 +219,6 @@ $app->post('/register', function() {
     }
 });
 
-
-$app->post('/login', function(){
-    $app = \Slim\Slim::getInstance();
-    $username        = $app->request()->post('username');
-    $password        = $app->request()->post('password');
-    $app->response->setStatus(200);
-    $app->response()->headers->set('Content-Type', 'application/json');
-    $db = getDB();    
-    try {
-    	$sth = $db->prepare("SELECT * from user WHERE username=:username AND password=:password");
-        $sth->bindParam(':username', $username, PDO::PARAM_INT);
-        $sth->bindParam(':password', $password, PDO::PARAM_INT);
-        $sth->execute();
-        $row = $sth->fetch();
-       	$status_login = $row['status_login'];
-       	$username1 = $row['username'];
-       	$password1 = $row['password'];
-
-       	if($username==$username1 && $password==$password1){
-		    if($status_login=='0'){
-		        $sth1 = $db->prepare("UPDATE user SET status_login = '1' WHERE username=:username AND password=:password");
-		        $sth1->bindParam(':username', $username, PDO::PARAM_INT);
-				$sth1->bindParam(':password', $password, PDO::PARAM_INT);
-		        $sth1->execute();
-		        $output = array(
-		                    'status' => "1",
-		                    'pesan' => "login berhasil"
-		                );
-		        echo json_encode($output);
-		        $db = null;
-		        return;
-				}
-
-		    if($status_login=='1'){
-				$output = array(
-		                    'status' => "1",
-		                    'pesan' => "sudah login"
-		                );
-				echo json_encode($output);
-		        $db = null;
-		        return;
-		    }
-		}
-        
-        if($username!=$username1 && $password1!=$password1){
-			$output = array(
-		                    'status' => "0",
-		                    'pesan' => "username & password tidak match"
-		                );
-	        echo json_encode($output);
-	        $db = null;
-	        return;
-    	}
-
-    } catch (Exception $ex) {
-        echo $ex;
-    }
-});
-
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
-
 $app->post('/log_in', function(){
     $app = \Slim\Slim::getInstance();
     $username         = $app->request()->post('username');
@@ -367,18 +243,12 @@ $app->post('/log_in', function(){
 		            $sth1->bindParam(':username', $username, PDO::PARAM_INT);
 		            $sth1->bindParam(':password', $password, PDO::PARAM_INT);
 		            $sth1->execute();
-<<<<<<< HEAD
 					}        
 		            $output1 = array(
-=======
-		            }
-		            $output = array(
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
 		                    'status' => "1",
 		                    'pesan' => "log_in berhasil"
 		                );
 
-<<<<<<< HEAD
 					echo json_encode($output1);
 			        $db=null;
 			        return;
@@ -397,27 +267,12 @@ $app->post('/log_in', function(){
 			        $db=null;
 			        return;
 			    
-=======
-		        if($status_login=='1'){
-		        	$output =  array('status' =>  "0",
-		        					 'pesan' => "sudah log_in" );
-		        }
-
-				echo json_encode($output);
-		        $db=null;
-		        return;
-
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
 		}
 
 		if($username!=$username || $password!=$password_db){
 			$output = array(
 		                    'status' => "0",
-<<<<<<< HEAD
 		                    'pesan' => "username & password not match"
-=======
-		                    'pesan' => "username & password tidak match"
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
 		                );
 	        echo json_encode($output);
 	        $db = null;
@@ -428,30 +283,19 @@ $app->post('/log_in', function(){
 		}
 });
 
-<<<<<<< HEAD
 //logout
-=======
-
-
-
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
 $app->post('/logout', function(){
     $app = \Slim\Slim::getInstance();
     $username         = $app->request()->post('username');
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     $db = getDB();    
-<<<<<<< HEAD
-    
-=======
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
     try {
         $sth = $db->prepare("SELECT status_login from user WHERE username=:username");
         $sth->bindParam(':username', $username, PDO::PARAM_INT);
         $sth->execute();
         $row = $sth->fetch();
         $status_login = $row['status_login'];
-<<<<<<< HEAD
         
         if($status_login=='1'){
 		        	$sth3 = $db->prepare("UPDATE user SET status_login = '0' WHERE username=:username");
@@ -467,26 +311,11 @@ $app->post('/logout', function(){
         $db = null;
         return;
 
-=======
-        if($status_login=='1'){
-            $sth1 = $db->prepare("UPDATE user SET status_login = '0' WHERE username=:username");
-            $sth1->bindParam(':username', $username, PDO::PARAM_INT);
-            $sth1->execute();
-            }
-            $output = array(
-                    'status' => "1",
-                    'pesan' => "logout berhasil"
-                );
-        echo json_encode($output);
-        $db = null;
-        return;
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
     } catch (Exception $ex) {
         echo $ex;
     }
 });
 
-<<<<<<< HEAD
 //registering new account
 $app->post('/register', function() {
 	$app = \Slim\Slim::getInstance();
@@ -534,47 +363,24 @@ $app->post('/order', function() {
     $app = \Slim\Slim::getInstance();
     $id_order      = $app->request()->post('id_order');
     $id_user       = $app->request()->post('id_user');
-=======
-$app->post('/order', function() {
-    $app = \Slim\Slim::getInstance();
-    $id_order      = $app->request()->post('id_order');
-    $username       = $app->request()->post('username');
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
     $id_produk     = $app->request()->post('id_produk');
     $asrama        = $app->request()->post('asrama');
     $no_kamar      = $app->request()->post('no_kamar');
     $jus           = $app->request()->post('jus');
-<<<<<<< HEAD
-=======
-	$tanggal_booking = $app->request()->post('tanggal_booking');
-	$jam_booking = $app->request()->post('jam_booking');
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
     $waktu_order   = $app->request()->post('waktu_order');
     $status_order  = $app->request()->post('status_order');
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     try {
         $db = getDB();
-<<<<<<< HEAD
         $sth = $db->prepare("INSERT INTO orderan (id_order, id_user, id_produk, asrama, no_kamar, jus, waktu_order, status_order) 
             VALUES (:id_order, :id_user, :id_produk, :asrama, :no_kamar, :jus, CURRENT_TIMESTAMP, 'menunggu')");
             $sth->bindParam(':id_order',     $id_order, PDO::PARAM_INT);
             $sth->bindParam(':id_user',      $id_user, PDO::PARAM_INT);
-=======
-        $sth = $db->prepare("INSERT INTO orderan (id_order, username, id_produk, asrama, no_kamar, jus, tanggal_booking, jam_booking, waktu_order, status_order) 
-            VALUES (:id_order, :username, :id_produk, :asrama, :no_kamar, :jus, :tanggal_booking, :jam_booking, CURRENT_TIMESTAMP, 'menunggu')");
-            $sth->bindParam(':id_order',     $id_order, PDO::PARAM_INT);
-            $sth->bindParam(':username',      $username, PDO::PARAM_INT);
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
             $sth->bindParam(':id_produk',    $id_produk, PDO::PARAM_INT);
             $sth->bindParam(':asrama',       $asrama, PDO::PARAM_INT);
             $sth->bindParam(':no_kamar',     $no_kamar, PDO::PARAM_INT);
             $sth->bindParam(':jus',          $jus, PDO::PARAM_INT);
-<<<<<<< HEAD
-=======
-			$sth->bindParam(':tanggal_booking', $tanggal_booking, PDO::PARAM_INT);
-			$sth->bindParam(':jam_booking', $jam_booking, PDO::PARAM_INT);
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
             $sth->execute();
             $output = array(
                     'status' => "1",
@@ -588,17 +394,10 @@ $app->post('/order', function() {
     }
 });
 
-<<<<<<< HEAD
 //confirming order
 $app->post('/confirmOrder', function(){
     $app = \Slim\Slim::getInstance();
     $id_order         = $app->request()->post('id_order');
-=======
-$app->post('/confirmOrder', function(){
-    $app = \Slim\Slim::getInstance();
-    $id_order         = $app->request()->post('id_order');
-	$confirm_by       = $app->request()->post('username');
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
     $app->response->setStatus(200);
     $app->response()->headers->set('Content-Type', 'application/json');
     $db = getDB();    
@@ -609,11 +408,7 @@ $app->post('/confirmOrder', function(){
         $row = $sth->fetch();
         $status_order = $row['status_order'];
         if($status_order=='menunggu'){
-<<<<<<< HEAD
             $sth1 = $db->prepare("UPDATE orderan SET status_order = 'diterima' , waktu_konfirmasi = CURRENT_TIMESTAMP WHERE id_order=:id_order");
-=======
-            $sth1 = $db->prepare("UPDATE orderan SET status_order = 'diterima' , waktu_konfirmasi = CURRENT_TIMESTAMP, confirm_by = username WHERE id_order=:id_order");
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
             $sth1->bindParam(':id_order', $id_order, PDO::PARAM_INT);
             $sth1->execute();
             }
@@ -629,10 +424,7 @@ $app->post('/confirmOrder', function(){
     }
 });
 
-<<<<<<< HEAD
 //rejecting incoming order
-=======
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
 $app->post('/rejectOrder', function(){
     $app = \Slim\Slim::getInstance();
     $id_order         = $app->request()->post('id_order');
@@ -662,10 +454,6 @@ $app->post('/rejectOrder', function(){
     }
 });
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 6258250260ef3931a8972d788394bec17d29a90e
 /**
  * Echoing json response to client
  * @param String $status_code Http response code
